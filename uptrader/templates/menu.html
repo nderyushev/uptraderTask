@@ -1,0 +1,17 @@
+{% load menu_tags %}
+
+<div class="d-flex">
+<a href="{{ menu_item.explicit_url }}">{{ menu_item.name }}</a>
+{% if menu_item.get_children %}
+<details {% if menu_item.id in unwrapped_menu_item_ids %} open {% endif %}>
+    <summary class="pl-2" style="outline: none">
+
+    </summary>
+    {% for child in menu_item.get_children %}
+    <div class="menu_item" style="padding-left: 1%">
+        {% draw_menu_item_children child.id %}
+    </div>
+    {% endfor %}
+</details>
+{% endif %}
+</div>
